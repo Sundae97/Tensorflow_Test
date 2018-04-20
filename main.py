@@ -13,7 +13,7 @@ x_data = np.random.rand(100).astype(np.float32)
 y_data = x_data * 0.1 + 0.3
 
 plt.figure()
-plt.plot(list(np.linspace(0,100,100)), x_data, color='red', marker='x',linestyle='')
+plt.plot(x_data , y_data, color='red', marker='x',linestyle='')
 
 Weights = tf.Variable(tf.random_uniform([1], -1.0, 1.0))
 biases = tf.Variable(tf.zeros([1]))
@@ -31,7 +31,7 @@ sess.run(init)
 
 for step in range(201):
     sess.run(train)
-    print(step, sess.run(Weights), sess.run(biases))
+    print(step, sess.run(Weights), sess.run(biases) , sess.run(loss))
 
 print("\n----------------END----------------")
 
@@ -39,11 +39,8 @@ w = sess.run(Weights)
 b = sess.run(biases)
 # print("w : " + str(w) + "   b : " + str(b))
 #
-lin_x = np.linspace(0,100,100)
+lin_x = np.linspace(0,1,100)
 result_y = w * lin_x + b
-
-print(lin_x)
-print(result_y)
 
 plt.plot(lin_x , result_y ,color='green',linestyle='--')
 plt.show()
